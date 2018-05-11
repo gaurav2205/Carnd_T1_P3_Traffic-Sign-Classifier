@@ -42,42 +42,47 @@ You're reading it! and here is a link to my [project code](https://github.com/ud
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas library to calculate summary statistics of the traffic
+I used the python to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 34799
+* The size of the validation set is 4410
+* The size of test set is 12630
+* The shape of a traffic sign image is 32 , 32 , 3
+* The number of unique classes/labels in the data set is 43
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. It is a bar chart showing how the data is distributed in the no of classes
 
-![alt text][image1]
+![Histogram](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/Image_2.png)
 
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+As a first step, I decided to convert the images to grayscale because it would enable my model to differentiate between pixels fast and without much power required
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][image2]
+![Conversion into grayscale](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/Image_3.png)
 
-As a last step, I normalized the image data because ...
+As a last step, I normalized the image data because of the two reasons. It was suggested in the lessons and secondly this site (http://stats.stackexchange.com/questions/185853/why-do-we-need-to-normalize-the-images-before-weput-them-into-cnn) has an explanation. it says that it would be very difficult for the cnns to train using a single learning rate if the data has a much wider distribution. This made sense as well and in the end helped me improving the accuracy as well.
 
-I decided to generate additional data because ... 
+I decided to generate additional data because data augmentation is said to be the best technique used in order to improve the accuracy. The reason for it is that in the data set, if the number of images in particular class is way less then the model training will be more biased to the classes which have more data. This made perfect sense to me. 
 
-To add more data to the the data set, I used the following techniques because ... 
+To add more data to the the data set, I used the techniques in such a way that the data is more and is different but still recognizable. This is the reason i did some small random translations and rotations in order to copy the images and having more data.  
 
 Here is an example of an original image and an augmented image:
 
-![alt text][image3]
+![Random Rotation](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/Image_4.png)
+
+![Random Translation](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/Image_5.png)
 
 The difference between the original data set and the augmented data set is the following ... 
+![Original Dataset](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/Image_2.png)
+
+![Augmented Dataset](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/image_1.png)
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -87,11 +92,21 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Preprocessing    		| 32x32x1 Grayscale Normalized image 			| 
+| Convolution 5x5     	| 1x1 stride, same padding, outputs 28x28x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x6  				|
+| Convolution 5x5     	| 1x1 stride, same padding, outputs 10x10x16 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16   				|
+| Flattening            | Output 400                                    |
+| Fully connected		| Input 400 ; Output : 120						|
+| RELU					|												|
+| Dropout       		|                       						|
+| Fully connected		| Input 120 ; Output : 84						|
+| RELU					|												|
+| Fully connected		| Input 84 ; Output : 43						|
+| RELU					|												|
 | Softmax				| etc.        									|
 |						|												|
 |						|												|
