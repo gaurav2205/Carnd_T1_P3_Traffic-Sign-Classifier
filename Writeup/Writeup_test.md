@@ -65,7 +65,7 @@ As a first step, I decided to convert the images to grayscale because ...
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][Traffic-Sign-Classifier/Writeup/Image_2.png]
+![alt text](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Writeup/Image_2.png)
 
 As a last step, I normalized the image data because ...
 
