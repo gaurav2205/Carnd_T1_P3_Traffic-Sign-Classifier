@@ -107,44 +107,38 @@ My final model consisted of the following layers:
 | RELU					|												|
 | Fully connected		| Input 84 ; Output : 43						|
 | RELU					|												|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+To train the model, I trained my model by checking on different optimizer. I started off with GradientdescentOptimizer but there the error loss rate was not so good. I changed it to AdamOptimizer (as used in the lessons). This improved the accuracy very well and the loss rate improved. I also varied the different parameters in order to get a better accuracy. The parameters used for batch size, number of epochs , learning rate, keep_probability.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* Training Set Accuracy of 99.9 %
+* validation set accuracy of 98.7 % 
+* test set accuracy of 77.7 %
 
 If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
+* Initially GradientDescentOptimzer was used and wihouth the dropout layer.
 * What were some problems with the initial architecture?
+    * That architecture required a large number of epochs and very high processing power. It was not really optimal to use that as a model when there are other possibilties.
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+    * The model was adjusted by augmenting the data. As the accuracy on the validation dataset was not increasing at a significant rate. It made sense to augment some data in order to have the equal distribution of the data over the classes. This would train the model much better and in return results in much better accuracy.
 * Which parameters were tuned? How were they adjusted and why?
+    * The parameters that were tuned were as following: Batch size, Number of Epochs, Learning rate and Keep_probability.
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+    * lenet architecture is tested and well accpeted architecture. It made sense to use this architevture in order to achiev the required results. Dropout layer helped in reducing the processing time and power.
  
 
 ### Test a Model on New Images
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are eight German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![Sign 1](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_1.png) ![Sign 2](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_2.png) ![Sign 3](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_3.png) ![Sign 4](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_4.png) ![Sign 5](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_5.png) ![Sign 6](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_6.png) ![Sign 7](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_7.png) ![Sign 8](https://github.com/gaurav2205/Traffic-Sign-Classifier/blob/master/Internet%20traffic%20signs/Image_8.png)
 
 The first image might be difficult to classify because ...
 
@@ -154,14 +148,17 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
+| 50 speed limit     	| Stop sign   									| 
 | Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Priority road     	|Priority road									|
+| 30 km / h				| STOP    										|
+| Road work     		| Traffic light|
+| Priority next junction| turn left           							|
+| turn right            | turn right           							|
+| No Entry              | No Entry           							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 8 traffic signs, which gives an accuracy of 50%. This compares favorably to the accuracy on the test set of 
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
