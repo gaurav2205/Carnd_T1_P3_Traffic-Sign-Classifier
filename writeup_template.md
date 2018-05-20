@@ -117,8 +117,8 @@ To train the model, I trained my model by checking on different optimizer. I sta
 
 My final model results were:
 * Training Set Accuracy of 99.9 %
-* validation set accuracy of 98.7 % 
-* test set accuracy of 77.7 %
+* validation set accuracy of 99 % 
+* test set accuracy of 86.4 %
 
 If an iterative approach was chosen:
 * Initially GradientDescentOptimzer was used and wihouth the dropout layer.
